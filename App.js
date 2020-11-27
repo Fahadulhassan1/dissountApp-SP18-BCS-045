@@ -14,7 +14,8 @@ import {
   View,
   Text,
   StatusBar,
-  Button
+  Button , 
+  TextInput
 } from 'react-native';
 
 import {
@@ -26,16 +27,34 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 class App extends React.Component{
+  constructor(){
+    super();
+    this.state= {
+      result : ""
+    };
+  }
   render(){
     return (
      <View>
-       <Button title = "new"/>
-       <Text>hello</Text>
+
+       <Text>enter thr original price </Text>
+       <TextInput style = {[styles.textinput]}></TextInput>
+       <Text>enter the discount </Text>
+       <TextInput style = {[styles.textinput]} ></TextInput>
+       <Button title = "hello"/>
      </View>
       
 
     )
   }
+  
 }
+const styles = StyleSheet.create({
+  textinput:{
+    borderBottomWidth : 2
+  
+  }
+})
+
 
 export default App;
