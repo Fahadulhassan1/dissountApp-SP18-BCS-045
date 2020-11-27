@@ -1,60 +1,50 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
+import React, { useDebugValue, useState } from "react";
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
   Text,
-  StatusBar,
-  Button , 
-  TextInput
-} from 'react-native';
+  View,
+  Button,
+  TextInput,
+  Modal,
+  TouchableHighlight,
+  ScrollView,
+} from "react-native";
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-class App extends React.Component{
-  constructor(){
-    super();
-    this.state= {
-      result : ""
-    };
-  }
-  render(){
-    return (
-     <View>
 
-       <Text>enter thr original price </Text>
-       <TextInput style = {[styles.textinput]}></TextInput>
-       <Text>enter the discount </Text>
-       <TextInput style = {[styles.textinput]} ></TextInput>
-       <Button title = "hello"/>
-     </View>
+
+export default function App() {
+  const [getPrice , setPrice] = useState ("dummy text");
+  const [getDiscount , setDiscount] = useState ("dummydiscount");
+
+  const calculate =  () =>{
+      const price = Number (getPrice)
+      const discount = Number (getDiscount)
       
 
-    )
   }
-  
+  return(
+    <View style = {{paddingTop : 40}}> 
+    <Text> enter the price</Text>
+    <TextInput style = {styles.inputtext} onChangeText = {text => setPrice(text)}  /> 
+    <Text> enter the pdiscount</Text>
+    <TextInput style = {styles.inputtext} onChangeText = {text => setDiscount(text)} /> 
+    <Button title = " calculate"  onPress = {calculate}/>
+
+    <Text>  {getPrice} </Text>
+     <Text>{getDiscount} </Text>
+
+
+    
+    
+    </View>
+
+  );
+
 }
-const styles = StyleSheet.create({
-  textinput:{
+const styles = StyleSheet.create( {
+  inputtext : {
     borderBottomWidth : 2
-  
+
   }
 })
-
-
-export default App;
