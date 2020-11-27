@@ -8,6 +8,7 @@ import {
   Modal,
   TouchableHighlight,
   ScrollView,
+  Dimensions
 } from "react-native";
 
 
@@ -19,6 +20,7 @@ export default function App() {
   const [gettotalDiscount , settotalDiscount ] = useState("");
   const [getsavings , setsavings  ] = useState ("");
   const[getHistory , setHistory] = useState ([]);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const calculate =  () =>{
       const price = Number (getPrice)
@@ -52,7 +54,34 @@ export default function App() {
       
   
   return(
-    <View style = {{backgroundColor: 'orange'}}> 
+    <View style = {styles.container}>
+      <Modal
+        animationType="slide"
+        
+        transparent={true}
+        visible={modalVisible}
+        
+      >
+        <View >
+          <View style={styles.modalView}>
+          <TouchableHighlight
+              style={{ ...styles.openButton, backgroundColor: "green" }}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={styles.textStyle }>X</Text>
+            </TouchableHighlight>
+          <Text style={styles.modalText}>Price| Discount%| Discounted Price| You Saved</Text>
+          <ScrollView>
+                {getHistory.map(
+                    (data) => <Text style = {{fontSize : 30}}>{data[0]}| {data[1]}%| {data[2] }| {data[3]}</Text>
+                )}
+            </ScrollView>
+            
+          </View>
+        </View>
+      </Modal> 
     <Text style ={styles.header}>Discount App</Text>
     <View style = {styles.priceborder}>
     <Text style = {{fontSize : 16}}> enter the price</Text>
@@ -72,7 +101,7 @@ export default function App() {
      </View>
      <View style = {{paddingTop: 70, flexDirection: "row" ,marginLeft: 20, justifyContent: 'space-evenly'}}>
       <Button  color ="green" title = "Save"  onPress = {saved}/>
-      <Button color ="green" title = "View History" />
+      <Button color ="green" title = "View History"  onPress={() => {setModalVisible(!modalVisible)}}/>
       </View>
     
     </View>
@@ -81,6 +110,12 @@ export default function App() {
 
 }
 const styles = StyleSheet.create( {
+  container:{
+    backgroundColor : "orange",
+    height: Dimensions.get('window').height,
+      width: Dimensions.get('window').width,
+  },
+
   inputtext : {
     borderBottomWidth : 2 ,
     padding : 20,
@@ -98,5 +133,34 @@ const styles = StyleSheet.create( {
   priceborder : {
     borderWidth : 2 , 
     marginBottom : 5
+  },
+  textStyleModal: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    
+  
+  },
+  textStyle :{
+    fontSize : 40, 
+    paddingLeft: 30,
+    width : 80,
+    alignItems: "center",
+    justifyContent: "center"
+    
   }
+
 })
