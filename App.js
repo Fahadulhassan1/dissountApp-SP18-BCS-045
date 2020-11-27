@@ -18,6 +18,7 @@ export default function App() {
   const [getDiscount , setDiscount] = useState ("");
   const [gettotalDiscount , settotalDiscount ] = useState("");
   const [getsavings , setsavings  ] = useState ("");
+  const[getHistory , setHistory] = useState ([]);
 
   const calculate =  () =>{
       const price = Number (getPrice)
@@ -36,7 +37,17 @@ export default function App() {
         setDiscount(e)
       }
 
-    } 
+    }
+    const saved = () => {
+        const data = [
+          getPrice,
+          getDiscount,
+          gettotalDiscount,
+          getsavings
+
+        ];
+        setHistory([...getHistory , data]);
+    }
 
       
   
@@ -59,8 +70,10 @@ export default function App() {
     <View  style={{marginTop : 50  , borderBottomWidth:2}}>
      <Text style = {{fontSize : 24}}> total saving is : {getsavings} </Text>
      </View>
-
-    
+     <View style = {{paddingTop: 70, flexDirection: "row" ,marginLeft: 20, justifyContent: 'space-evenly'}}>
+      <Button  color ="green" title = "Save"  onPress = {saved}/>
+      <Button color ="green" title = "View History" />
+      </View>
     
     </View>
 
