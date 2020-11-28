@@ -89,7 +89,7 @@ export default function App() {
     </View>
     < View style = {styles.priceborder} >
     <Text style = {{fontSize : 16}}> enter the discount</Text>
-    <TextInput style = {styles.inputtext} keyboardType={'numeric'}  onChangeText = {(text) => discountCheck(text)}  /> 
+    <TextInput style = {styles.inputtext} keyboardType={'numeric'} value = {getDiscount} onChangeText = {(text) => discountCheck(text)}  /> 
     </View>
     <Button  color = "green" title = " calculate"  onPress = {calculate}/>
     
