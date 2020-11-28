@@ -63,7 +63,9 @@ export default function App() {
         
       >
         <View >
-          <View style={styles.modalView}>
+          
+          <View style={styles.modalView} >
+            
           <TouchableHighlight
               style={{ ...styles.openButton, backgroundColor: "green" }}
               onPress={() => {
@@ -73,10 +75,11 @@ export default function App() {
               <Text style={styles.textStyle }>X</Text>
             </TouchableHighlight>
           <Text style={styles.modalText}>Price| Discount%| Discounted Price| You Saved</Text>
-          <ScrollView>
-                {getHistory.map(
-                    (data) => <Text style = {{fontSize : 30}}>{data[0]}| {data[1]}%| {data[2] }| {data[3]}</Text>
+          <ScrollView >
+                {getHistory.map((data) => 
+                <Text key = {data} style = {{fontSize : 30}}>{data[0]}| {data[1]}%| {data[2] }| {data[3]}</Text>
                 )}
+                
             </ScrollView>
             
           </View>
